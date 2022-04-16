@@ -3,13 +3,13 @@ import { logger, region, RuntimeOptions } from 'firebase-functions'
 import express from 'express'
 import { lineMiddlewareConfig } from '~/utils/line'
 import { errorLogger } from '~/utils/util'
-import { handlers } from './handlers'
+import { messagesHandler } from './handlers'
 
 const app = express()
 
 app.use(middleware(lineMiddlewareConfig))
 app.post('/', (req, res) =>
-  Promise.all(req.body.events.map(handlers))
+  Promise.all(req.body.events.map(messagesHandler))
     .then((result) => {
       logger.info(result)
       res.status(200).end()

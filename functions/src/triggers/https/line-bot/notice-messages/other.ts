@@ -5,6 +5,11 @@ export const msgOther: TextMessage = {
   text: 'は？殴りますよ？'
 }
 
+export const msgNotText: TextMessage = {
+  type: 'text',
+  text: 'はい？殴りますよ？'
+}
+
 export const msgError: FlexMessage = {
   type: 'flex',
   altText: 'エラーが発生しました',
