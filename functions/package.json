@@ -4,6 +4,7 @@
   "scripts": {
     "build": "rm -rf dist && tsc",
     "dev": "yarn build && firebase emulators:start --only functions",
+    "init:richMenu": "yarn build && node dist/migrations/init-rich-menu.js",
     "shell": "yarn build && firebase functions:shell",
     "start": "yarn shell",
     "logs": "firebase functions:log",
