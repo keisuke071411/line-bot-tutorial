@@ -4,7 +4,6 @@ import { errorLogger } from '~/utils/util'
 import { msgOther } from '~line/notice-messages/other'
 import { messageImageHandler } from './image'
 
-
 export const messagesHandler = async (event: MessageEvent): Promise<void> => {
   try {
     switch (event.message.type) {

@@ -2,12 +2,12 @@ import { FlexMessage, TextMessage } from '@line/bot-sdk'
 
 export const msgOther: TextMessage = {
   type: 'text',
-  text: 'は？殴りますよ？'
+  text: 'no such file or directory!'
 }
 
 export const msgNotText: TextMessage = {
   type: 'text',
-  text: 'はい？殴りますよ？'
+  text: 'Cannot find module!'
 }
 
 export const msgError: FlexMessage = {
