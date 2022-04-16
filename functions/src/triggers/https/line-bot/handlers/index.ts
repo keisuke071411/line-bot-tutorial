@@ -1,23 +1,22 @@
-import { WebhookEvent } from '@line/bot-sdk'
+import { MessageEvent } from '@line/bot-sdk'
 import { lineClient } from '~/utils/line'
-import { msgError } from '~line/notice-messages/other'
-
-import { followHandler } from './follow'
-import { messagesHandler } from './messages'
 import { errorLogger } from '~/utils/util'
+import { msgOther } from '~line/notice-messages/other'
+import { messageImageHandler } from './image'
 
-export const handlers = async (event: WebhookEvent): Promise<void> => {
+
+export const messagesHandler = async (event: MessageEvent): Promise<void> => {
   try {
-    switch (event.type) {
-      case 'follow':
-        return await followHandler(event)
-      case 'message':
-        return await messagesHandler(event)
+    switch (event.message.type) {
+      // case 'text':
+      //   return await messageTextHandler(event)
+      case 'image':
+        return await messageImageHandler(event)
       default:
+        await lineClient.replyMessage(event.replyToken, msgOther)
     }
   } catch (err) {
-    lineClient.pushMessage(event.source.userId!, msgError).catch
     errorLogger(err)
-    throw new Error('handlers')
+    throw new Error('messages handler')
   }
 }
